@@ -11,7 +11,12 @@ import cartRouter from './routes/cartRouter.js'
 import orderRouter from './routes/orderRouter.js'
 
 const app = express()
-dotenv.config()
+app.use(cors({
+  origin: "*", // allow all
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
 
 // miidleware 
 app.use(cors())
