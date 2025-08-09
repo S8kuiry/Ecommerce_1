@@ -70,7 +70,7 @@ const Navbar = () => {
             ))}
             <motion.a
             whileTap={{scale:0.96}}
-               href="http://localhost:5174"
+               href={import.meta.env.VITE_ADMIN}
   target="_blank" // or remove target to open in same tab
   rel="noopener noreferrer"
               className='border border-gray-400 rounded-full py-2 px-4 text-xs font-semibold cursor-pointer text-gray-500'
