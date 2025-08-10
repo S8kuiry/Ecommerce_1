@@ -6,17 +6,19 @@ const addProduct = async (req, res) => {
   try {
     const { name, price, bestseller, category, subcategory, description, sizes } = req.body;
 
-    const image1 = req.files?.image1?.[0];
-    const image2 = req.files?.image2?.[0];
-    const image3 = req.files?.image3?.[0];
-    const image4 = req.files?.image4?.[0];
+    // Get all uploaded files from multer
+    const images = [
+      req.files?.image1?.[0],
+      req.files?.image2?.[0],
+      req.files?.image3?.[0],
+      req.files?.image4?.[0],
+    ].filter(Boolean); // Remove undefined entries
 
-    const images = [image1, image2, image3, image4];
-
-    // Upload images to Cloudinary
+    // Upload images to Cloudinary directly from memory buffer
     const imagesUrl = await Promise.all(
-      images.map(async (itm) => {
-        const result = await cloudinary.uploader.upload(itm.path, { resource_type: 'image' });
+      images.map(async (file) => {
+        const base64 = `data:${file.mimetype};base64,${file.buffer.toString('base64')}`;
+        const result = await cloudinary.uploader.upload(base64, { resource_type: 'image' });
         return {
           url: result.secure_url,
           public_id: result.public_id
@@ -24,7 +26,7 @@ const addProduct = async (req, res) => {
       })
     );
 
-    // Create product in DB
+    // Save product in DB
     const product = await productModel.create({
       name,
       description,
