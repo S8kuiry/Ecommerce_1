@@ -6,22 +6,6 @@ Forever.com is a modern, fully responsive **clothing e-commerce platform** built
 🛠 **Admin Panel:** [Forever.com Admin](https://ecommerce-1-admin-mu.vercel.app/)  
 📡 **Backend API:** [Forever.com Server](https://ecommerce-1-server.vercel.app/)
 
----
-
-## 📸 Screenshots
-
-### 🏠 Home Page
-![Forever.com Home Page](https://i.ibb.co/nbZzVkc/home-page.png)
-
-### 🛍 Collection Page
-![Forever.com Collection](https://i.ibb.co/qxqvNvm/collection-page.png)
-
-### 📦 Product Page
-![Forever.com Product Page](https://i.ibb.co/fN1x5Ss/product-page.png)
-
----
-
-## ✨ Features
 
 ### 👥 User Side
 - 🛒 Browse collections with **category & subcategory filters**.
@@ -63,3 +47,4 @@ Forever.com is a modern, fully responsive **clothing e-commerce platform** built
 ```bash
 git clone <frontend_repo_url>
 git clone <backend_repo_url>
+
