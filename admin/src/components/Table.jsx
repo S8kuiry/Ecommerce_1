@@ -4,7 +4,6 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
-const [loading,setLoading] = useState(false)
 
 const Table = ({ token }) => {
 
