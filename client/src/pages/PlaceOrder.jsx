@@ -33,9 +33,28 @@ const PlaceOrder = () => {
   const navigate = useNavigate()
 
 
-  
+  // helper function to load script dynamically
+const loadRazorpayScript = () => {
+  return new Promise((resolve) => {
+    if (window.Razorpay) {
+      // already loaded
+      resolve(true);
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = "https://checkout.razorpay.com/v1/checkout.js";
+    script.onload = () => resolve(true);
+    script.onerror = () => resolve(false);
+    document.body.appendChild(script);
+  });
+};
 
   const initpay = async (order) => {
+    const loaded = await loadRazorpayScript();
+  if (!loaded) {
+    toast.error("Razorpay SDK failed to load. Please check your connection.");
+    return;
+  }
     const options = {
       key: import.meta.env.VITE_RAZORPAY_KEY_ID,
       amount: order.amount,
