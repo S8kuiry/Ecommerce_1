@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { X } from 'lucide-react';
+import { Loader, X } from 'lucide-react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 
 const backendUrl = import.meta.env.VITE_BACKEND_URL;
+const [loading,setLoading] = useState(false)
 
 const Table = ({ token }) => {
+
   const [productList, setProductList] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   const fetchItems = async () => {
     try {
+      
       const response = await axios.get(`${backendUrl}/api/product/list`, {
         headers: {
           Authorization: `Bearer ${token}`,
